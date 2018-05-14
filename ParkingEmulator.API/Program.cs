@@ -7,6 +7,9 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using ParkingEmulator.Core.Entities;
+using ParkingEmulator.Core.Kernel;
+using ParkingEmulator.Log.Logging;
 
 namespace ParkingEmulator.API
 {
@@ -14,6 +17,11 @@ namespace ParkingEmulator.API
     {
         public static void Main(string[] args)
         {
+            var parking = Parking.Instance;
+            parking.AddCar(new Car(1000, CarType.Bus));
+            parking.AddCar(new Car(2000, CarType.Motorcycle));
+            TransactionLogger.LogInit();
+
             BuildWebHost(args).Run();
         }
 

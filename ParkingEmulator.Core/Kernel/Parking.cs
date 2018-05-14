@@ -10,7 +10,7 @@ namespace ParkingEmulator.Core.Kernel
     public class Parking
     {
         private static readonly Lazy<Parking> lazy = new Lazy<Parking>(() => new Parking());
-        public static Parking GetInstance { get { return lazy.Value; } }
+        public static Parking Instance { get { return lazy.Value; } }
 
         //----
 
@@ -38,8 +38,7 @@ namespace ParkingEmulator.Core.Kernel
             {
                 if (Cars.Count > 0)
                 {
-                    var lastCarIndex = Cars.FindLastIndex(c => c is ICar);
-                    car.Id = lastCarIndex + 1;
+                    car.Id = Cars.FindLast(c => c is ICar).Id + 1;
                 }
                 else
                 {
