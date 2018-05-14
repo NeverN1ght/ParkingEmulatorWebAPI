@@ -5,11 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using ParkingEmulator.API.DTOs;
 using ParkingEmulator.API.Services;
+using ParkingEmulator.Core.Exceptions;
+using ParkingEmulator.Core.Interfaces;
+using ParkingEmulator.Core.Entities;
 
 namespace ParkingEmulator.API.Controllers
 {
-    //[Produces("application/json")]
+    [Produces("application/json")]
     [Route("api/Cars")]
     public class CarsController : ControllerBase
     {
@@ -20,45 +24,64 @@ namespace ParkingEmulator.API.Controllers
             carService = new CarService();
         }
 
-        // GET: api/Cars
-        [HttpGet]
-        public string GetAllCars()
+
+
+        // GET: api/Cars/Get
+        [HttpGet("Get")]
+        public List<ICar> GetAllCars()
         {
-            return JsonConvert.SerializeObject(carService.GetCarsList());
+            return carService.GetCarsList();
         }
 
-
-        //// GET: api/Cars
-        //[HttpGet]
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
-
-        // GET: api/Cars/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        // GET: api/Cars/Get/{id}
+        [HttpGet("Get/{id}")]
+        public IActionResult GetCarById(int id)
         {
-            return "value";
-        }
-        
-        // POST: api/Cars
-        [HttpPost]
-        public void Add([FromBody]string value)
-        {
-
+            try
+            {
+                return Ok(carService.GetCarDetails(id));
+            }
+            catch (NotExistException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
         
-        // PUT: api/Cars/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        // POST: api/Cars/Add
+        [HttpPost("Add")]
+        public IActionResult AddCar([FromBody]CarDTO carDTO)
         {
-        }
+            try
+            {
+                var carId = carService.AddNewCar(carDTO);
+
+                return CreatedAtAction("GetCarById", 
+                    new { Id =  carId}, 
+                        carService.GetCarDetails(carId));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message); 
+            }
+        }       
         
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        // DELETE: api/Cars/Delete/{id}
+        [HttpDelete("Delete/{id}")]
+        public IActionResult DeleteCar(int id)
         {
+            try
+            {
+                carService.RemoveCar(id);
+                return NoContent();
+            }
+            catch (NotExistException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (FinedCarException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

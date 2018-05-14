@@ -5,6 +5,6 @@
         Passenger,
         Truck,
         Bus,
-        Motorcycle
+        Motorcycle 
     }
 }

@@ -1,7 +1,9 @@
-﻿using ParkingEmulator.Core.Entities;
+﻿using ParkingEmulator.API.DTOs;
+using ParkingEmulator.Core.Entities;
 using ParkingEmulator.Core.Exceptions;
 using ParkingEmulator.Core.Interfaces;
 using ParkingEmulator.Core.Kernel;
+using System;
 using System.Collections.Generic;
 
 namespace ParkingEmulator.API.Services
@@ -15,8 +17,9 @@ namespace ParkingEmulator.API.Services
             parkingInstance = Parking.Instance;
         }
 
+        //----
 
-        public List<ICar> GetCarsList()//maybe fix
+        public List<ICar> GetCarsList()
         {
             return parkingInstance.Cars;
         }
@@ -26,32 +29,23 @@ namespace ParkingEmulator.API.Services
             return parkingInstance.FindCarById(id);
         }
 
-        public void AddNewCar(decimal startBalance, CarType type)
+        public int AddNewCar(CarDTO carDTO)
         {
-            try
-            {
-                parkingInstance.AddCar(new Car(startBalance, type));
-            }
-            catch (NotEnoughParkingSpaceException ex)
-            {
-                //implement
-            }
+            if (carDTO == null)
+                throw new NullReferenceException("No data!");
+
+            if (carDTO.Balance <= 0)
+                throw new ArgumentException("Balance must be more than 0!");
+
+            if (carDTO.Type < 0 || (int)carDTO.Type > 3)
+                throw new ArgumentException("Wrong car type!");
+
+            return parkingInstance.AddCar(new Car(carDTO.Balance, carDTO.Type));
         }
 
         public void RemoveCar(int id)
         {
-            try
-            {
-                parkingInstance.RemoveCar(parkingInstance.FindCarById(id));
-            }
-            catch (NotExistException ex)
-            {
-                //implement
-            }
-            catch (FinedCarException ex)
-            {
-                //implement
-            }
+            parkingInstance.RemoveCar(parkingInstance.FindCarById(id));
         }
     }
 }

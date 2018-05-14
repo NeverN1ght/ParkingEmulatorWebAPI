@@ -20,6 +20,8 @@ namespace ParkingEmulator.Core.Kernel
 
         public decimal EarnedBalance { get; private set; }
 
+        private const int removeOldInterval = 180000;
+
         //----
 
         private Parking()
@@ -32,7 +34,7 @@ namespace ParkingEmulator.Core.Kernel
        
         //----
 
-        public void AddCar(ICar car)
+        public int AddCar(ICar car)
         {
             if (Cars.Count != Settings.ParkingSpace)
             {
@@ -45,6 +47,8 @@ namespace ParkingEmulator.Core.Kernel
                     car.Id = 1;
                 }
                 Cars.Add(car);
+
+                return car.Id;
             }
             else
             {
