@@ -1,6 +1,5 @@
 ﻿using ParkingEmulator.API.DTOs;
 using ParkingEmulator.Core.Entities;
-using ParkingEmulator.Core.Exceptions;
 using ParkingEmulator.Core.Interfaces;
 using ParkingEmulator.Core.Kernel;
 using System;

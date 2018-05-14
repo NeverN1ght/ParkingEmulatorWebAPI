@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using ParkingEmulator.API.DTOs;
 using ParkingEmulator.API.Services;
 using ParkingEmulator.Core.Exceptions;
-using ParkingEmulator.Core.Interfaces;
-using ParkingEmulator.Core.Entities;
 
 namespace ParkingEmulator.API.Controllers
 {
@@ -24,13 +17,11 @@ namespace ParkingEmulator.API.Controllers
             carService = new CarService();
         }
 
-
-
         // GET: api/Cars/Get
         [HttpGet("Get")]
-        public List<ICar> GetAllCars()
+        public IActionResult GetAllCars()
         {
-            return carService.GetCarsList();
+            return Ok(carService.GetCarsList());
         }
 
         // GET: api/Cars/Get/{id}

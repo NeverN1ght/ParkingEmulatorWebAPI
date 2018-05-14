@@ -20,6 +20,8 @@ namespace ParkingEmulator.API
         {
             Configuration = configuration;
 
+            
+
         }
 
         public IConfiguration Configuration { get; }

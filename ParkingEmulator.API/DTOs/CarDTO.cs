@@ -1,4 +1,6 @@
-﻿using ParkingEmulator.Core.Entities;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using ParkingEmulator.Core.Entities;
 
 namespace ParkingEmulator.API.DTOs
 {
@@ -8,6 +10,8 @@ namespace ParkingEmulator.API.DTOs
 
         public decimal Balance { get; set; }
 
+        [JsonProperty("error")]
+        [JsonConverter(typeof(StringEnumConverter))]
         public CarType Type { get; set; }
     }
 }
