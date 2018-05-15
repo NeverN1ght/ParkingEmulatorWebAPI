@@ -1,11 +1,8 @@
-﻿using ParkingEmulator.Core.Entities;
-using ParkingEmulator.Core.Interfaces;
+﻿using ParkingEmulator.Core.Interfaces;
 using ParkingEmulator.Core.Kernel;
 using ParkingEmulator.Log.Logging;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace ParkingEmulator.API.Services
 {
