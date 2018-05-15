@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("ParkingEmulator.Console")]
+[assembly: AssemblyTitle("ParkingEmulator.Log")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ParkingEmulator.Console")]
+[assembly: AssemblyProduct("ParkingEmulator.Log")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("7458cadb-6001-44b8-b268-3431a0510026")]
+[assembly: Guid("281801ad-f107-4936-a36c-cb0ad35c9c21")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //

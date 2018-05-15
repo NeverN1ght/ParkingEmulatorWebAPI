@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+using ParkingEmulator.Core.Kernel;
+using ParkingEmulator.Log.Logging;
 
 namespace ParkingEmulator.API
 {
@@ -14,6 +9,9 @@ namespace ParkingEmulator.API
     {
         public static void Main(string[] args)
         {
+            var parking = Parking.Instance;
+            TransactionLogger.LogInit();
+
             BuildWebHost(args).Run();
         }
 
