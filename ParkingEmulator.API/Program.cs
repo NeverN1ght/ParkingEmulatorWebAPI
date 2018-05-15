@@ -18,8 +18,6 @@ namespace ParkingEmulator.API
         public static void Main(string[] args)
         {
             var parking = Parking.Instance;
-            parking.AddCar(new Car(1000, CarType.Bus));
-            parking.AddCar(new Car(2000, CarType.Motorcycle));
             TransactionLogger.LogInit();
 
             BuildWebHost(args).Run();
