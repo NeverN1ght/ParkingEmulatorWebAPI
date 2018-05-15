@@ -1,6 +1,6 @@
-# ParkingEmulator
+# ParkingEmulatorWebAPI
 ![Main](https://cs8.pikabu.ru/images/big_size_comm/2016-04_4/1461079999170513586.jpg)
->Всем привет! Меня зовут Николай, я начинающий .NET разработчик. Мною было написано это WebAPi, которое позволяет взаимодействовать с [эмулятором парковки](https://github.com/NeverN1ght/ParkingEmulator) через HTTP протокол.
+>Всем привет! Меня зовут Николай, я начинающий .NET разработчик. Мною было написано это WebAPI, которое позволяет взаимодействовать с [эмулятором парковки](https://github.com/NeverN1ght/ParkingEmulator) через HTTP протокол.
 
 ## API
 ### 1. Cars
