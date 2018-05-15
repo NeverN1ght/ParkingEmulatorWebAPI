@@ -6,7 +6,7 @@
 ### 1. Cars
 * `api/Cars/Get` - список всех машин (GET)
 * `api/Cars/Get/{id}` - информация о конкретной машине (GET)
-* `api/Cars/Add` - добавить новуюу машину (POST)
+* `api/Cars/Add` - добавить новую машину (POST)
 * `api/Cars/Delete/{id}` - удалить существующую машину (DELETE)
 
 ### 2. Transactions
